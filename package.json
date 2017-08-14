@@ -1,0 +1,36 @@
+{
+	"name": "lock-system",
+	"version": "0.0.0",
+	"description": "Lock your Mac",
+	"license": "MIT",
+	"repository": "sindresorhus/lock-system",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=4"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js",
+		"lock"
+	],
+	"keywords": [
+		"macos",
+		"mac",
+		"lock",
+		"system",
+		"screen",
+		"os",
+		"login",
+		"password"
+	],
+	"devDependencies": {
+		"ava": "*",
+		"xo": "*"
+	}
+}
