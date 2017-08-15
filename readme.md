@@ -1,8 +1,8 @@
 # lock-system
 
-> Lock your Mac
+> Lock your system
 
-Shows the login screen the next time you use your Mac.
+Shows the login screen the next time you use your computer. Supports macOS and Windows.
 
 
 ## Install
@@ -19,6 +19,17 @@ const lockSystem = require('lock-system');
 
 lockSystem();
 ```
+
+
+## API
+
+### lockSystem()
+
+Locks the system.
+
+Please note that this function will throw an `Error`:
+ - if executing the lock command fails, or
+ - if the os (see [`process.platform`](https://nodejs.org/api/process.html#process_process_platform)) is not supported (only `darwin` and `win32` are supported at the moment).
 
 
 ## Related
