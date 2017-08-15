@@ -1,4 +1,5 @@
 'use strict';
+
 const path = require('path');
 const childProcess = require('child_process');
 
@@ -12,8 +13,16 @@ const WIN32_CMD = 'rundll32.exe user32.dll,LockWorkStation';
 
 module.exports = () => {
 	switch (os) {
-		case 'darwin': return childProcess.execFileSync(DARWIN_BIN);
-		case 'win32': return childProcess.execSync(WIN32_CMD);
-		default: throw new Error(`Unsupported os: ${os}`);
+
+		case 'darwin':
+			childProcess.execFileSync(DARWIN_BIN);
+			break;
+
+		case 'win32':
+			childProcess.execSync(WIN32_CMD);
+			break;
+
+		default:
+			throw new Error(`unsupported os '${os}'`);
 	}
 };
