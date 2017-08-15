@@ -1,37 +1,37 @@
 {
-	"name": "lock-system",
-	"version": "1.0.0",
-	"description": "Lock your system",
-	"license": "MIT",
-	"repository": "sindresorhus/lock-system",
-	"author": {
-		"name": "Sindre Sorhus",
-		"email": "sindresorhus@gmail.com",
-		"url": "sindresorhus.com"
-	},
-	"engines": {
-		"node": ">=4"
-	},
-	"scripts": {
-		"test": "xo && ava"
-	},
-	"files": [
-		"index.js",
-		"lock"
-	],
-	"keywords": [
-		"lock",
-		"system",
-		"macos",
-		"mac",
-		"windows",
-		"screen",
-		"os",
-		"login",
-		"password"
-	],
-	"devDependencies": {
-		"ava": "*",
-		"xo": "*"
-	}
+  "name": "lock-system",
+  "version": "1.1.0",
+  "description": "Lock your system",
+  "license": "MIT",
+  "repository": "sindresorhus/lock-system",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js",
+    "lock"
+  ],
+  "keywords": [
+    "lock",
+    "system",
+    "macos",
+    "mac",
+    "windows",
+    "screen",
+    "os",
+    "login",
+    "password"
+  ],
+  "devDependencies": {
+    "ava": "*",
+    "xo": "*"
+  }
 }
