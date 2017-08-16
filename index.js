@@ -14,6 +14,36 @@ module.exports = () => {
 			childProcess.execFileSync('rundll32.exe', ['user32.dll,LockWorkStation']);
 			break;
 		}
+		case 'linux': {
+			// See: https://askubuntu.com/questions/184728/how-do-i-lock-the-screen-from-a-terminal
+			const commands = [{
+				name: 'xdg-screensaver',
+				arg: 'lock'
+			}, {
+				name: 'gnome-screensaver-command',
+				arg: '-l'
+			}, {
+				name: 'vlock',
+				arg: '-a -s'
+			}];
+
+			const existingCommand = commands.find(command => {
+				try {
+					const result = childProcess.execFileSync('which', [command.name], { encoding: 'utf8' });
+					return result && result.length;
+				} catch (err) {
+					return false;
+				}
+			});
+
+			if (existingCommand) {
+				childProcess.execFileSync(existingCommand.name, [existingCommand.arg]);
+			} else {
+				throw new Error('No applicable command found. Please consider installing xdg-screensaver, gnome-screensaver or vlock and try again.');
+			}
+
+			break;
+		}
 		default: {
 			throw new Error(`Unsupported OS '${process.platform}'`);
 		}
