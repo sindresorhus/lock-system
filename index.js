@@ -1,6 +1,29 @@
 'use strict';
+
 const path = require('path');
 const childProcess = require('child_process');
+
+const getExistingLinuxCommand = () => {
+	const commands = [{
+		name: 'xdg-screensaver',
+		arg: 'lock'
+	}, {
+		name: 'gnome-screensaver-command',
+		arg: '--lock'
+	}, {
+		name: 'vlock',
+		arg: '-a -s'
+	}];
+
+	return commands.find(command => {
+		try {
+			const result = childProcess.execFileSync('which', [command.name], { encoding: 'utf8' });
+			return result && result.length;
+		} catch (err) {
+			return false;
+		}
+	});
+};
 
 module.exports = () => {
 	switch (process.platform) {
@@ -16,25 +39,7 @@ module.exports = () => {
 		}
 		case 'linux': {
 			// See: https://askubuntu.com/questions/184728/how-do-i-lock-the-screen-from-a-terminal
-			const commands = [{
-				name: 'xdg-screensaver',
-				arg: 'lock'
-			}, {
-				name: 'gnome-screensaver-command',
-				arg: '-l'
-			}, {
-				name: 'vlock',
-				arg: '-a -s'
-			}];
-
-			const existingCommand = commands.find(command => {
-				try {
-					const result = childProcess.execFileSync('which', [command.name], { encoding: 'utf8' });
-					return result && result.length;
-				} catch (err) {
-					return false;
-				}
-			});
+			const existingCommand = getExistingLinuxCommand();
 
 			if (existingCommand) {
 				childProcess.execFileSync(existingCommand.name, [existingCommand.arg]);
