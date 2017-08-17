@@ -11,8 +11,8 @@ const getExistingLinuxCommand = () => {
 		name: 'gnome-screensaver-command',
 		arg: '--lock'
 	}, {
-		name: 'vlock',
-		arg: '-a -s'
+		name: 'dm-tool',
+		arg: 'lock'
 	}];
 
 	return commands.find(command => {
