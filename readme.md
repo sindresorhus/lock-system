@@ -4,7 +4,7 @@
 
 Shows the login screen the next time you use the computer.
 
-Supports macOS, Windows and Linux.
+Supports macOS, Linux, and Windows.
 
 
 ## Install
