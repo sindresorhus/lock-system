@@ -1,9 +1,9 @@
 'use strict';
-
 const path = require('path');
 const childProcess = require('child_process');
 
 const getExistingLinuxCommand = () => {
+	// See: https://askubuntu.com/questions/184728/how-do-i-lock-the-screen-from-a-terminal
 	const commands = [{
 		name: 'xdg-screensaver',
 		arg: 'lock'
@@ -17,8 +17,8 @@ const getExistingLinuxCommand = () => {
 
 	return commands.find(command => {
 		try {
-			const result = childProcess.execFileSync('which', [command.name], { encoding: 'utf8' });
-			return result && result.length;
+			const result = childProcess.execFileSync('which', [command.name], {encoding: 'utf8'});
+			return result && result.length > 0;
 		} catch (err) {
 			return false;
 		}
@@ -38,7 +38,6 @@ module.exports = () => {
 			break;
 		}
 		case 'linux': {
-			// See: https://askubuntu.com/questions/184728/how-do-i-lock-the-screen-from-a-terminal
 			const existingCommand = getExistingLinuxCommand();
 
 			if (existingCommand) {
