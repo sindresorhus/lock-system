@@ -43,7 +43,7 @@ module.exports = () => {
 			if (existingCommand) {
 				childProcess.execFileSync(existingCommand.name, [existingCommand.arg]);
 			} else {
-				throw new Error('No applicable command found. Please consider installing xdg-screensaver, gnome-screensaver or dm-tool and try again.');
+				throw new Error('No applicable command found. Please consider installing xdg-screensaver, gnome-screensaver, or dm-tool, and try again.');
 			}
 
 			break;
