@@ -11,6 +11,9 @@ const getExistingLinuxCommand = () => {
 		name: 'gnome-screensaver-command',
 		arg: '--lock'
 	}, {
+		name: 'cinnamon-screensaver-command',
+		arg: '--lock'
+	}, {
 		name: 'dm-tool',
 		arg: 'lock'
 	}];
