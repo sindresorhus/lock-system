@@ -1,0 +1,3 @@
+import lockSystem = require('.');
+
+lockSystem();
