@@ -22,7 +22,7 @@ const getExistingLinuxCommand = () => {
 		try {
 			const result = childProcess.execFileSync('which', [command.name], {encoding: 'utf8'});
 			return result && result.length > 0;
-		} catch (err) {
+		} catch (_) {
 			return false;
 		}
 	});
@@ -35,11 +35,13 @@ module.exports = () => {
 			childProcess.execFileSync(path.join(__dirname, 'lock'));
 			break;
 		}
+
 		case 'win32': {
 			// See: https://superuser.com/questions/21179/command-line-cmd-command-to-lock-a-windows-machine
 			childProcess.execFileSync('rundll32.exe', ['user32.dll,LockWorkStation']);
 			break;
 		}
+
 		case 'linux': {
 			const existingCommand = getExistingLinuxCommand();
 
@@ -51,6 +53,7 @@ module.exports = () => {
 
 			break;
 		}
+
 		default: {
 			throw new Error(`Unsupported OS '${process.platform}'`);
 		}

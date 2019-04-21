@@ -1,8 +1,8 @@
 import test from 'ava';
-import m from '.';
+import lockSystem from '.';
 
-test(t => {
+test('main', t => {
 	t.notThrows(() => {
-		m();
+		lockSystem();
 	});
 });
