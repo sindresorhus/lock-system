@@ -1,34 +1,37 @@
-'use strict';
-const path = require('path');
-const childProcess = require('child_process');
+import process from 'node:process';
+import path from 'node:path';
+import childProcess from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const getExistingLinuxCommand = () => {
 	// See: https://askubuntu.com/questions/184728/how-do-i-lock-the-screen-from-a-terminal
 	const commands = [{
 		name: 'xdg-screensaver',
-		arg: 'lock'
+		argument: 'lock',
 	}, {
 		name: 'gnome-screensaver-command',
-		arg: '--lock'
+		argument: '--lock',
 	}, {
 		name: 'cinnamon-screensaver-command',
-		arg: '--lock'
+		argument: '--lock',
 	}, {
 		name: 'dm-tool',
-		arg: 'lock'
+		argument: 'lock',
 	}];
 
 	return commands.find(command => {
 		try {
 			const result = childProcess.execFileSync('which', [command.name], {encoding: 'utf8'});
 			return result && result.length > 0;
-		} catch (_) {
+		} catch {
 			return false;
 		}
 	});
 };
 
-module.exports = () => {
+export default function lockSystem() {
 	switch (process.platform) {
 		case 'darwin': {
 			// Binary: https://github.com/sindresorhus/macos-lock
@@ -46,7 +49,7 @@ module.exports = () => {
 			const existingCommand = getExistingLinuxCommand();
 
 			if (existingCommand) {
-				childProcess.execFileSync(existingCommand.name, [existingCommand.arg]);
+				childProcess.execFileSync(existingCommand.name, [existingCommand.argument]);
 			} else {
 				throw new Error('No applicable command found. Please consider installing xdg-screensaver, gnome-screensaver, cinnamon-screensaver, or dm-tool, and try again.');
 			}
@@ -55,7 +58,7 @@ module.exports = () => {
 		}
 
 		default: {
-			throw new Error(`Unsupported OS '${process.platform}'`);
+			throw new Error(`Unsupported OS: ${process.platform}`);
 		}
 	}
-};
+}

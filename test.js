@@ -1,5 +1,5 @@
 import test from 'ava';
-import lockSystem from '.';
+import lockSystem from './index.js';
 
 test('main', t => {
 	t.notThrows(() => {

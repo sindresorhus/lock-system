@@ -1,3 +1,3 @@
-import lockSystem = require('.');
+import lockSystem from './index.js';
 
 lockSystem();
